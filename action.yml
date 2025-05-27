@@ -1,0 +1,37 @@
+name: dotnet-env
+author: Daniel Cazzulino
+description: Setup .NET environment from a versions file
+
+inputs:
+  versions:  
+    description: 'The JSON file containing the versions to install'
+    required: true
+    default: './.github/dotnet.json'
+
+branding:
+  icon: terminal
+  color: purple
+
+runs:
+  using: composite
+  steps:
+    - name: 🤌 dotnet
+      if: ${{ !hashFiles(inputs.versions) }}
+      uses: devlooped/actions-which-dotnet@v1
+
+    - name: 👀 dotnet
+      id: dotnet
+      shell: bash
+      run: |
+        # read ${{ inputs.versions }}
+        {
+          echo 'versions<<EOF'
+          echo "$(jq -r '.[]' ${{ inputs.versions }})"
+          echo 'EOF'
+        } >> $GITHUB_OUTPUT
+
+    - name: ⚙ dotnet
+      uses: actions/setup-dotnet@v4
+      if: steps.dotnet.outputs.versions != ''
+      with:
+        dotnet-version: ${{ steps.dotnet.outputs.versions }}
