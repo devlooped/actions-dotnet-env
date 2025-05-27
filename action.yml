@@ -1,6 +1,6 @@
 name: dotnet-env
 author: Daniel Cazzulino
-description: Setup .NET environment from a versions file
+description: Automatically setup .NET environment for actively used SDK versions
 
 inputs:
   versions:  

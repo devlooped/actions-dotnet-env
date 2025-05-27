@@ -1,13 +1,20 @@
 # >_ dotnet-env
 
-Setup .NET environment from a versions file
+Automatically setup .NET environment for actively used SDK versions 
 
 ## Usage
 
 The action is typically used in combination with [which-dotnet](https://github.com/marketplace/actions/which-dotnet)
 to keep the CI environment up-to-date with evolving .NET versions used in your repository projects. 
 
-Assuming your repository has the `dotnet.json` file in its default location (under `./.github`):
+If no previously persisted JSON file is provided, automatic discovery of used .NET SDK versions 
+will be performed using [which-dotnet](https://github.com/marketplace/actions/which-dotnet).
+
+> It's recommended you set up a separate workflow that keeps a `dotnet.json` file up-to-date 
+> to speed-up your builds by avoiding dynamic discovery on every build.
+
+Assuming your repository has the `dotnet.json` file in its default location (under `./.github`), 
+or has no versions file at all:
 
 
 ```yml
