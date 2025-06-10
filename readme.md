@@ -44,6 +44,9 @@ If you use a different location for the versions file:
       versions: ./dotnet-versions.json
 ```
 
+In order to bootstrap the initial `dotnet.json` file, you can run the [dotnet-env](https://www.nuget.org/packages/dotnet-env) 
+tool with the `-o` parameter, which initializes it at the default location `./.github/dotnet.json`.
+
 <!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 # Sponsors 
 
